@@ -7,12 +7,7 @@ import {
 } from "../constants";
 import ReadLocalisationFileService from "./readLocalisationFileService";
 import ResolveModNameService from "./resolveModNameService";
-import Result, {
-  ng,
-  ok,
-  sequence as resultSequence,
-  map as resultMap,
-} from "../utils/results";
+import Result, { ng, ok, map as resultMap } from "../utils/results";
 
 export default class ReadModUsecase {
   private readLocalisationFileService: ReadLocalisationFileService;
@@ -45,8 +40,9 @@ export default class ReadModUsecase {
         (entry) => entry.isDirectory && entry.name === LOCALISATION_DIRNAME
       )
     );
-    if (localisationResponse.isNg) return localisationResponse;
-    const localisation = localisationResponse.value;
+    const localisation = localisationResponse.isOk
+      ? localisationResponse.value
+      : undefined;
 
     const localisationSyncedResponse = await this.buildLocalisation(
       children?.find(
@@ -54,8 +50,9 @@ export default class ReadModUsecase {
           entry.isDirectory && entry.name === LOCALISATION_SYNCED_DIRNAME
       )
     );
-    if (localisationSyncedResponse.isNg) return localisationSyncedResponse;
-    const localisationSynced = localisationSyncedResponse.value;
+    const localisationSynced = localisationSyncedResponse.isOk
+      ? localisationSyncedResponse.value
+      : undefined;
 
     return ok({
       name: modName,
@@ -68,7 +65,7 @@ export default class ReadModUsecase {
   private async buildLocalisation(
     root?: DirEntry
   ): Promise<Result<Entry, string>> {
-    if (root === undefined) return ng("");
+    if (root === undefined) return ng("ディレクトリが正しくありません");
 
     if (root.isDirectory) {
       const resultChildren = root.children
@@ -76,8 +73,12 @@ export default class ReadModUsecase {
             root.children.map((child) => this.buildLocalisation(child))
           )
         : [];
-      const children = resultSequence(resultChildren);
-      return resultMap((children) => dir(root.name, children), children);
+      const children: Entry[] = [];
+      for (const child of resultChildren)
+        if (child.isOk) children.push(child.value);
+      if (children === [])
+        return ng("対象となるファイルがディレクトリ内に存在しません");
+      return ok(dir(root.name, children));
     } else {
       const body = await this.readLocalisationFileService.execute(root);
       return resultMap((body) => file(root.name, body), body);
