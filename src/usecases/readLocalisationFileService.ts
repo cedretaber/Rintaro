@@ -7,7 +7,7 @@ import {
   ALLOWED_LOCALISATION_LANG,
 } from "../constants";
 import { parseLine } from "../utils/texts";
-import Result, { ng, ok } from "../utils/results";
+import Result, { ng, ok } from "../utils/result";
 
 export default class ReadLocalisationFileService {
   constructor(private remoteApi: RemoteApi) {}

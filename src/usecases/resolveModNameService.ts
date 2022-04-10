@@ -5,7 +5,7 @@ import {
   UTF8BOM,
 } from "../constants";
 import RemoteApi from "../remoteApi";
-import Result, { ng, ok } from "../utils/results";
+import Result, { ng, ok } from "../utils/result";
 
 export default class ResolveModNameService {
   constructor(private remoteApi: RemoteApi) {}

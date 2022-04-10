@@ -2,7 +2,7 @@ import Mod from "../domains/mod";
 import RemoteApi from "../remoteApi";
 import { loadSaveDataFromString } from "../serializers/savedata";
 import Dictionary from "../utils/dictionary";
-import Result, { ng, ok } from "../utils/results";
+import Result, { ng, ok } from "../utils/result";
 
 export default class LoadDataUsecase {
   constructor(private remoteApi: RemoteApi) {}

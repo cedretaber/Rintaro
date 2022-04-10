@@ -9,7 +9,7 @@ import {
 import ReadLocalisationFileService from "./readLocalisationFileService";
 import ResolveModNameService from "./resolveModNameService";
 import Dictionary, { empty as emptyDictionary } from "../utils/dictionary";
-import Result, { ng, ok } from "../utils/results";
+import Result, { ng, ok } from "../utils/result";
 
 export default class ReadTranslationUsecase {
   private readLocalisationFileService: ReadLocalisationFileService;

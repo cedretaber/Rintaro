@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import ReadLocalisationFileService from "./readLocalisationFileService";
 import ResolveModNameService from "./resolveModNameService";
-import Result, { ng, ok, map as resultMap } from "../utils/results";
+import Result, { ng, ok, map as resultMap } from "../utils/result";
 
 export default class ReadModUsecase {
   private readLocalisationFileService: ReadLocalisationFileService;

@@ -2,7 +2,7 @@ import Mod, { Entry, File, isLocalisation } from "../domains/mod";
 import RemoteApi from "../remoteApi";
 import Dictionary from "../utils/dictionary";
 import { transformLocalisationYmlStyle } from "../utils/texts";
-import Result, { ng, ok } from "../utils/results";
+import Result, { ng, ok } from "../utils/result";
 
 export default class WriteTranslationUsecase {
   constructor(private remoteApi: RemoteApi) {}
