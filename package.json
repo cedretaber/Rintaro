@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "npm run dev",
-    "build": "react-scripts build",
+    "build": "react-scripts build && tsc -p electron",
     "test": "react-scripts test",
     "test:ci": "cross-env CI=true npm run test",
     "eject": "react-scripts eject",
@@ -28,8 +28,9 @@
     "dev": "concurrently \"cross-env BROWSER=none npm run server\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
     "electron:test": "jest --watch",
     "electron:test:ci": "jest",
-    "electron:build:portable": "npm run build && tsc -p electron && electron-builder --win --x64 --dir",
-    "electron:build:nis": "npm run build && tsc -p electron && electron-builder --win --x64"
+    "electron:build": "electron-builder",
+    "electron:build:portable": "electron-builder --dir",
+    "build:all": "npm run build && npm run electron:build"
   },
   "eslintConfig": {
     "extends": [
@@ -66,11 +67,24 @@
   },
   "build": {
     "extends": null,
+    "productName": "Rintaro",
     "files": [
       "build/**/*"
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "cedretaber",
+      "releaseType": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   }
 }

@@ -39,6 +39,9 @@ Mod の番号は Steam Workshop などで確認してください。
 ## 開発
 
 ```bash
+# Setup
+$ npm install
+
 # build
 $ npm run build
 
@@ -49,6 +52,6 @@ $ npm start
 $ npm run test
 $ npm run electron:test
 
-# pack for windows
-$ npm run electron:build:portable
+# pack
+$ npm run build:all
 ```

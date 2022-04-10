@@ -39,6 +39,9 @@ Inside that Mod's directory, copy the directory Rintaro has written out.
 ## How to develop
 
 ```bash
+# Setup
+$ npm install
+
 # build
 $ npm run build
 
@@ -49,6 +52,6 @@ $ npm start
 $ npm run test
 $ npm run electron:test
 
-# pack for windows
-$ npm run electron:build:portable
+# pack
+$ npm run build:all
 ```
