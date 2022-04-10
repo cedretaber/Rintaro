@@ -1,5 +1,8 @@
 # Rintaro
 
+[![CI](https://github.com/cedretaber/Rintaro/actions/workflows/ci.yml/badge.svg)](https://github.com/cedretaber/Rintaro/actions/workflows/ci.yml)
+[![Build](https://github.com/cedretaber/Rintaro/actions/workflows/build.yml/badge.svg)](https://github.com/cedretaber/Rintaro/actions/workflows/build.yml)
+
 Support the creation of translation mods
 
 ## How to use

@@ -2,7 +2,7 @@
   "main": "build/electron/index.js",
   "homepage": "./",
   "name": "rintaro",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "cedretaber",
   "description": "Support the creation of translation mods",
   "license": "MIT",
