@@ -50,5 +50,5 @@ $ npm run test
 $ npm run electron:test
 
 # pack for windows
-$ electron:build:portable
+$ npm run electron:build:portable
 ```
