@@ -1,0 +1,76 @@
+{
+  "main": "build/electron/index.js",
+  "homepage": "./",
+  "name": "rintaro",
+  "version": "0.2.0",
+  "author": "cedretaber",
+  "description": "Support the creation of translation mods",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.0",
+    "@mui/lab": "^5.0.0-alpha.76",
+    "@mui/material": "^5.6.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^4.6.3",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:ci": "cross-env CI=true npm run test",
+    "eject": "react-scripts eject",
+    "server": "react-scripts start",
+    "dev": "concurrently \"cross-env BROWSER=none npm run server\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
+    "electron:test": "jest --watch",
+    "electron:test:ci": "jest",
+    "electron:build:portable": "npm run build && tsc -p electron && electron-builder --win --x64 --dir",
+    "electron:build:nis": "npm run build && tsc -p electron && electron-builder --win --x64"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "last 1 electron version"
+    ],
+    "development": [
+      "last 1 electron version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.1",
+    "@types/jest-when": "^3.5.0",
+    "@types/node": "^16.11.26",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^18.0.0",
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^18.0.3",
+    "electron-builder": "^22.14.13",
+    "jest": "^27.5.1",
+    "jest-when": "^3.5.1",
+    "react-scripts": "^5.0.0",
+    "ts-jest": "^27.1.4",
+    "wait-on": "^6.0.1"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  }
+}
