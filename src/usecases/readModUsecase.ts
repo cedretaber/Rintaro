@@ -76,7 +76,7 @@ export default class ReadModUsecase {
       const children: Entry[] = [];
       for (const child of resultChildren)
         if (child.isOk) children.push(child.value);
-      if (children === [])
+      if (children.length === 0)
         return ng("対象となるファイルがディレクトリ内に存在しません");
       return ok(dir(root.name, children));
     } else {
